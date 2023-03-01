@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <math.h>
+
+int is_armstrong(int n) {
+    int original = n;
+    int digits = 0;
+    int sum = 0;
+    while (n != 0) {
+        digits++;
+        n /= 10;
+    }
+    n = original;
+    while (n != 0) {
+        int digit = n % 10;
+        sum += pow(digit, digits);
+        n /= 10;
+    }
+    return sum == original;
+}
+
+void print_armstrong(int start, int end) {
+    printf("Armstrong numbers between %d and %d:\n", start, end);
+    for (int i = start; i <= end; i++) {
+        if (is_armstrong(i)) {
+            printf("%d\n", i);
+        }
+    }
+}
+
+int main() {
+    int start, end;
+    printf("Enter the range (start end): ");
+    scanf("%d %d", &start, &end);
+    print_armstrong(start, end);
+    return 0;
+}
